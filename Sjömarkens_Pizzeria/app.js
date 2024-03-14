@@ -38,11 +38,15 @@ window.smoothScroll = function (target) {
 };
 
 //popup-form
+//selects id of elements for variables
 const openFormButtons = document.querySelectorAll("[data-form-target]");
+const openReceiptButtons = document.querySelectorAll("[data-receipt-target]");
 const closeFormButtons = document.querySelectorAll("[data-close-button]");
+const formContainer = document.getElementById("form-container");
 const overlay = document.getElementById("overlay");
+const body = document.getElementById("body");
 
-//opens form if klick on button.
+//calls "openForm" if user click on button
 openFormButtons.forEach((button) => {
   button.addEventListener("click", () => {
     const form = document.querySelector(button.dataset.formTarget);
@@ -50,15 +54,15 @@ openFormButtons.forEach((button) => {
   });
 });
 
-//closes form if klick outside form
-overlay.addEventListener("click", () => {
-  const forms = document.querySelectorAll(".form.active");
-  forms.forEach((form) => {
-    closeForm(form);
+//calls "openReceipt" if user clicks on "submit"
+openReceiptButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    const receipt = document.querySelector(button.dataset.receiptTarget);
+    openReceipt(receipt);
   });
 });
 
-//closes form if click on close-button
+//calls "closeForm" if user click on "close-button"
 closeFormButtons.forEach((button) => {
   button.addEventListener("click", () => {
     const form = button.closest(".form");
@@ -66,16 +70,62 @@ closeFormButtons.forEach((button) => {
   });
 });
 
-//opens form
+//calls "closeForm" if user click outside the form, on "overlay"
+overlay.addEventListener("click", () => {
+  const forms = document.querySelectorAll(".form.active");
+  forms.forEach((form) => {
+    closeForm(form);
+  });
+});
+
+//opens form, adds class "active" to the element with id="form", id="overlay" and id="body"
 function openForm(form) {
   if (form == null) return;
+  //calls "closeReceipt" when "form" is not null to reset form
+  const receipts = document.querySelectorAll(".receipt.active-receipt");
+  receipts.forEach((receipt) => {
+    closeReceipt(receipt);
+  });
   form.classList.add("active");
   overlay.classList.add("active");
+  body.classList.add("active");
 }
 
-//closes form
+//opens receipt, adds class "active-receipt" to the element with id="receipt" and id="form-container"
+function openReceipt(receipt) {
+  if (receipt == null) return;
+  receipt.classList.add("active-receipt");
+  formContainer.classList.add("active-receipt");
+}
+
+//closes receipt, removes class "active-receipt" from the element with id="receipt" and id="form-container"
+function closeReceipt(receipt) {
+  if (receipt == null) return;
+  receipt.classList.remove("active-receipt");
+  formContainer.classList.remove("active-receipt");
+}
+
+//closes form, removes class "active" of the element with id="form", element with id="overlay" and id="body"
 function closeForm(form) {
   if (form == null) return;
   form.classList.remove("active");
   overlay.classList.remove("active");
+  body.classList.remove("active");
 }
+
+//prevents submit
+var myForm = document.getElementById("form-container");
+myForm.addEventListener("submit", function (e) {
+  e.preventDefault();
+  /* console.log(e.target.elements);
+  e.target.elements["input-dish"].value; */
+});
+
+//
+var dishDisplayed = '<div class="dish-displayed">test</div>';
+document.getElementById("display-dishes").innerHTML = dishDisplayed;
+
+//calculates time to make order and displays in HTML     INTE KLAR, ÄNDRA TIMEINMINUTES TILL FUNKTION
+let timeInMinutes = 10;
+var timeString = `<p>Din beställning är redo att hämtas om ${timeInMinutes} minuter.</p>`;
+document.getElementById("time").innerHTML = timeString;

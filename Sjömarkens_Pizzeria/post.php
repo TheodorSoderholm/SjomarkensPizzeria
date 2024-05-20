@@ -1,5 +1,6 @@
 <?php include('db.php'); ?>
 <!DOCTYPE html>
+
 <head>
     <meta charset="UTF-8" />
     <title>Sjömarkens Pizzeria</title>

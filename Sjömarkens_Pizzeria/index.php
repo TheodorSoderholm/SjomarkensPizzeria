@@ -1,3 +1,6 @@
+<?php include('db.php'); ?>
+<?php include('functions.php'); ?>
+<?php $dishes = getDishes(); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -209,12 +212,8 @@
                     });
 
                     function removeDishFunction(id) {
-                      /* HÄMTA EXAKT DEN MAN KLICKAR PÅ, INTE ALLA KNAPPAR */
                       var removeElement = document.getElementById(id);
                       var removeDish = removeElement.querySelector('.remove-button');
-                      //var removeDish = document.querySelector(`#${id} .remove-button`);
-
-
 
                       if (removeDish.addEventListener) {
                         removeDish.addEventListener("click", function() {

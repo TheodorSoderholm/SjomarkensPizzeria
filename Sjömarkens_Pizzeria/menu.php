@@ -214,12 +214,8 @@
                     });
 
                     function removeDishFunction(id) {
-                      /* HÄMTA EXAKT DEN MAN KLICKAR PÅ, INTE ALLA KNAPPAR */
                       var removeElement = document.getElementById(id);
                       var removeDish = removeElement.querySelector('.remove-button');
-                      //var removeDish = document.querySelector(`#${id} .remove-button`);
-
-
 
                       if (removeDish.addEventListener) {
                         removeDish.addEventListener("click", function() {
@@ -244,7 +240,6 @@
                       if ($i < $last) {
                         echo ',';
                       }
-
                       $i++;
                     }
                     ?>
@@ -340,8 +335,8 @@
                       <?php endforeach ?>
                     <?php endforeach ?>
                     <?php echo '<br />' ?>
-                    <!-- echo out descriptions -->         
-                      <?php echo $product['productDescription']; ?>
+                    <!-- echo out descriptions -->
+                    <?php echo $product['productDescription']; ?>
                   </h5>
                   <h5 class="price">
                     <!-- echo out prices -->

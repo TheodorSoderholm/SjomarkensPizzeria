@@ -113,17 +113,6 @@ function closeForm(form) {
   body.classList.remove("active");
 }
 
-//prevents submit
-/* var myForm = document.getElementById("form");
-myForm.addEventListener("submit", function (e) {
-  e.preventDefault();
-}); */
-
-
-//prints the dish
-/* var dishDisplayed = '<div class="dish-displayed">test</div>';
-document.getElementById("display-dishes").innerHTML = dishDisplayed; */
-
 //calculates time to make order and displays in HTML     INTE KLAR, ÄNDRA TIMEINMINUTES TILL FUNKTION
 let timeInMinutes = 10;
 var timeString = `<p>Din beställning är redo att hämtas om ${timeInMinutes} minuter.</p>`;
